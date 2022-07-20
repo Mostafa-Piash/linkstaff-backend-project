@@ -10,7 +10,8 @@
 /SocialNetwork/SocialNetwork.Domain/obj
 /SocialNetwork/SocialNetwork.Interfaces/bin
 /SocialNetwork/SocialNetwork.Interfaces/obj
-/SocialNetwork/SocialNetwork.Repositories/bin
-/SocialNetwork/SocialNetwork.Repositories/obj
-/SocialNetwork/SocialNetwork.Services/bin
-/SocialNetwork/SocialNetwork.Services/obj
+/SocialNetwork/SocialNetwork.Persistence/bin
+/SocialNetwork/SocialNetwork.Persistence/obj
+/SocialNetwork/SocialNetwork.Core/bin
+/SocialNetwork/SocialNetwork.Core/obj
+/SocialNetwork/.vs

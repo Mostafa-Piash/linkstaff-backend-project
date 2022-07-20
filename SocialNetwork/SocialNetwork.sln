@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.API", "SocialNetwork.API\SocialNetwork.API.csproj", "{267153FB-BABF-4A6A-9CAE-20A650C44D76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.Services", "SocialNetwork.Services\SocialNetwork.Services.csproj", "{C36EFB83-88E8-4BFE-87D1-09FAF06CFF4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.Core", "SocialNetwork.Core\SocialNetwork.Core.csproj", "{C36EFB83-88E8-4BFE-87D1-09FAF06CFF4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.Interfaces", "SocialNetwork.Interfaces\SocialNetwork.Interfaces.csproj", "{63D3CB46-57D0-43AC-9FCC-8F78266E97E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.Repositories", "SocialNetwork.Repositories\SocialNetwork.Repositories.csproj", "{32702AC4-5037-4A41-990B-6008E9DA893A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.Persistence", "SocialNetwork.Persistence\SocialNetwork.Persistence.csproj", "{32702AC4-5037-4A41-990B-6008E9DA893A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialNetwork.Domain", "SocialNetwork.Domain\SocialNetwork.Domain.csproj", "{EAC244A7-7B82-4F8A-B5C2-E2107DED97EA}"
 EndProject

@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿
+using Microsoft.Extensions.DependencyInjection;
 
-namespace SocialNetwork.Services
+namespace SocialNetwork.Core
 {
     public static class ServicesStartup
     {

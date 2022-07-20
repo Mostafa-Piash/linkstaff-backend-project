@@ -1,6 +1,5 @@
-using SocialNetwork.Domain.Persistence;
-using SocialNetwork.Repositories;
-using SocialNetwork.Services;
+using SocialNetwork.Persistence;
+using SocialNetwork.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
@@ -18,9 +17,11 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

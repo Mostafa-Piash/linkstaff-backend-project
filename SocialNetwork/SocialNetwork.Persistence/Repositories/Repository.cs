@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SocialNetwork.Domain.Persistence.Context;
 using SocialNetwork.Interfaces.Repositories;
+using SocialNetwork.Persistence.Context;
 
-namespace SocialNetwork.Repositories
+namespace SocialNetwork.Persistence.Repositories
 {
     public class Repository : IRepository
     {

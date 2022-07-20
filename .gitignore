@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SocialNetwork/.vs/SocialNetwork/v17
+/SocialNetwork/.vs/SocialNetwork/config
+/SocialNetwork/SocialNetwork.API/obj
+/SocialNetwork/SocialNetwork.API/bin
+/SocialNetwork/SocialNetwork.Domain/bin
+/SocialNetwork/SocialNetwork.Domain/obj
+/SocialNetwork/SocialNetwork.Interfaces/bin
+/SocialNetwork/SocialNetwork.Interfaces/obj
+/SocialNetwork/SocialNetwork.Repositories/bin
+/SocialNetwork/SocialNetwork.Repositories/obj
+/SocialNetwork/SocialNetwork.Services/bin
+/SocialNetwork/SocialNetwork.Services/obj

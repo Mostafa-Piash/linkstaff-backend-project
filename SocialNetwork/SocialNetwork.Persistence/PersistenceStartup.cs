@@ -12,8 +12,9 @@ namespace SocialNetwork.Persistence
         public static void ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<SocialNetworkDbContext>(options => {
-                options.UseSqlServer(configuration.GetConnectionString("DbConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DbConnection"), migration=> migration.MigrationsAssembly("SocialNetwork.Persistence"));
             });
+           
         }
         public static void AddRepositories(this IServiceCollection services)
         {

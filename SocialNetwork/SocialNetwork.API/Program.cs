@@ -1,5 +1,7 @@
 using SocialNetwork.Persistence;
 using SocialNetwork.Core;
+using SocialNetwork.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
@@ -13,7 +15,9 @@ builder.Services.AddRepositories();
 
 
 var app = builder.Build();
-
+await using var scope = app.Services.CreateAsyncScope();
+using var db = scope.ServiceProvider.GetService<SocialNetworkDbContext>();
+await db.Database.MigrateAsync();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

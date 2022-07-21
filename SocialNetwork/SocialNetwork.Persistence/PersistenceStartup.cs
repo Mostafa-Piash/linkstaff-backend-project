@@ -19,6 +19,8 @@ namespace SocialNetwork.Persistence
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
+
         }
     }
 }

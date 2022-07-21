@@ -6,7 +6,7 @@ namespace SocialNetwork.Persistence.Repositories
 {
     public class Repository : IRepository
     {
-        private readonly SocialNetworkDbContext _context;
+        protected readonly SocialNetworkDbContext _context;
         public Repository(SocialNetworkDbContext context)
         {
             _context = context;

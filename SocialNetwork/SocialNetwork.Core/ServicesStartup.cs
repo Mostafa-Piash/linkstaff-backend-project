@@ -1,5 +1,6 @@
-﻿
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Interfaces.Services;
 
 namespace SocialNetwork.Core
 {
@@ -7,6 +8,7 @@ namespace SocialNetwork.Core
     {
         public static void AddServices(this IServiceCollection services)
         {
+            services.AddScoped<IAuthService, AuthService>();
 
         }
 

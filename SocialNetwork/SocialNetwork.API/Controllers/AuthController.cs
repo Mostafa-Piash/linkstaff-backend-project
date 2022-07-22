@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SocialNetwork.Domain.DTOs.Auth;
+using SocialNetwork.Domain.Model.Auth;
 using SocialNetwork.Interfaces.Services;
 
 namespace SocialNetwork.API.Controllers
@@ -16,21 +16,21 @@ namespace SocialNetwork.API.Controllers
             _authService = authService;
         }
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync([FromBody]RegistrationRequest request)
+        public async Task<IActionResult> RegisterAsync([FromBody] RegistrationRequestModel request)
         {
             var response = await _authService.RegisterAsync(request);
             if(response.Success)
                 return Ok(response);
-            return StatusCode(StatusCodes.Status400BadRequest, response.Message);
+            return StatusCode(StatusCodes.Status400BadRequest, response);
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> LoginAsync([FromBody] LoginRequest request)
+        public async Task<IActionResult> LoginAsync([FromBody] LoginRequestModel request)
         {
             var response = await _authService.LoginAsync(request);
             if (response.Success)
                 return Ok(response);
-            return StatusCode(StatusCodes.Status400BadRequest, response.Message);
+            return StatusCode(StatusCodes.Status400BadRequest, response);
         }
 
     }

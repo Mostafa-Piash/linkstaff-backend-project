@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.Options;
 using SocialNetwork.Core.Helper;
 using SocialNetwork.Domain.Common;
-using SocialNetwork.Domain.DTOs.Auth;
+using SocialNetwork.Domain.Model.Auth;
 using SocialNetwork.Domain.Entities;
 using SocialNetwork.Interfaces.Repositories;
 using SocialNetwork.Interfaces.Services;
+using SocialNetwork.Domain.Model.Person;
 
 namespace SocialNetwork.Core.Services
 {
-    
-
     public class AuthService : IAuthService
     {
         private readonly IAuthRepository _authRepository;
@@ -21,11 +20,11 @@ namespace SocialNetwork.Core.Services
             _jwtConfigurationOptions = jwtConfigurationOptions?.Value;
         }
 
-        public async Task<Response<RegistrationResponse>> RegisterAsync(RegistrationRequest registration)
+        public async Task<Response<RegistrationResponseModel>> RegisterAsync(RegistrationRequestModel registration)
         {
             var person =await _authRepository.GetPersonByEmailAsync(registration.Email);
             if (person != null)
-                return new Response<RegistrationResponse>
+                return new Response<RegistrationResponseModel>
                 {
                     Success = false,
                     Message = "Email already exist",
@@ -41,11 +40,11 @@ namespace SocialNetwork.Core.Services
             });
             await _authRepository.SaveChangesAsync();
 
-            return new Response<RegistrationResponse>
+            return new Response<RegistrationResponseModel>
             {
                 Success = true,
                 Message = "registraion successful",
-                Result = new RegistrationResponse
+                Result = new RegistrationResponseModel
                 {
                     FirstName = registration.FirstName,
                     LastName = registration.LastName,
@@ -54,9 +53,9 @@ namespace SocialNetwork.Core.Services
             };
         }
 
-        public async Task<Response<LoginResponse>> LoginAsync(LoginRequest loginRequest)
+        public async Task<Response<LoginResponseModel>> LoginAsync(LoginRequestModel loginRequest)
         {
-            Response<LoginResponse> response = new();
+            Response<LoginResponseModel> response = new();
             var person = await _authRepository.GetPersonByEmailAsync(loginRequest.Email);
 
             if (person == null || !AuthHelper.HashPassword(loginRequest.Password).Equals(person.Password))
@@ -66,10 +65,10 @@ namespace SocialNetwork.Core.Services
                 return response;
             }
             string token = _jwtConfigurationOptions.GenerateJwtAsync(person.Email, person.Id);
-            response.Result = new LoginResponse
+            response.Result = new LoginResponseModel
             {
                 AccessToken = token,
-                User = new Domain.DTOs.Person
+                User = new PersonModel
                 {
                     Email = person.Email,
                     FirstName = person.FirstName,

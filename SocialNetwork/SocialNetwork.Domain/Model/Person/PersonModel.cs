@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialNetwork.Domain.DTOs.Auth
+namespace SocialNetwork.Domain.Model.Person
 {
-    public class LoginRequest
+    public class PersonModel
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using SocialNetwork.Domain.Common;
-using SocialNetwork.Domain.DTOs.Auth;
+using SocialNetwork.Domain.Model.Auth;
 
 namespace SocialNetwork.Interfaces.Services
 {
     public interface IAuthService
     {
-        Task<Response<LoginResponse>> LoginAsync(LoginRequest loginRequest);
-        Task<Response<RegistrationResponse>> RegisterAsync(RegistrationRequest registration);
+        Task<Response<LoginResponseModel>> LoginAsync(LoginRequestModel loginRequest);
+        Task<Response<RegistrationResponseModel>> RegisterAsync(RegistrationRequestModel registration);
     }
 }

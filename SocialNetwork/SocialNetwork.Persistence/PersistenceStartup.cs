@@ -20,6 +20,7 @@ namespace SocialNetwork.Persistence
         {
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IPageRepository, PageRepository>();
 
         }
     }

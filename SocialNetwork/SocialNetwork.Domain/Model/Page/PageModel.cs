@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialNetwork.Domain.DTOs.Auth
+namespace SocialNetwork.Domain.Model.Page
 {
-    public class RegistrationResponse: Person
+    public class PageModel
     {
+        public string Name { get; set; }
     }
 }

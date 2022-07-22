@@ -6,6 +6,7 @@
         {
             Posts = new HashSet<Post>();
             Followers = new HashSet<Follower>();
+            Pages= new HashSet<Page>();
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,5 +15,6 @@
 
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Follower> Followers { get; set; }
+        public virtual ICollection<Page> Pages { get; set; }
     }
 }

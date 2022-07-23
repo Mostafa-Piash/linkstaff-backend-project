@@ -12,7 +12,7 @@ using SocialNetwork.Persistence.Context;
 namespace SocialNetwork.Persistence.Migrations
 {
     [DbContext(typeof(SocialNetworkDbContext))]
-    [Migration("20220720202337_InitialCreate")]
+    [Migration("20220723051449_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,10 +47,10 @@ namespace SocialNetwork.Persistence.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("PageId")
+                    b.Property<long?>("PageId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PersonId")
+                    b.Property<long?>("PersonId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -73,6 +73,9 @@ namespace SocialNetwork.Persistence.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("CreatorId")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -83,9 +86,12 @@ namespace SocialNetwork.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
 
                     b.ToTable("Pages");
                 });
@@ -102,9 +108,11 @@ namespace SocialNetwork.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
@@ -114,12 +122,14 @@ namespace SocialNetwork.Persistence.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -135,10 +145,10 @@ namespace SocialNetwork.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<long>("CreatedByPage")
+                    b.Property<long?>("CreatedByPage")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("CreatedByPerson")
+                    b.Property<long?>("CreatedByPerson")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedDate")
@@ -154,6 +164,7 @@ namespace SocialNetwork.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -169,17 +180,24 @@ namespace SocialNetwork.Persistence.Migrations
                 {
                     b.HasOne("SocialNetwork.Domain.Entities.Page", "Page")
                         .WithMany("Followers")
-                        .HasForeignKey("PageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PageId");
 
                     b.HasOne("SocialNetwork.Domain.Entities.Person", "Person")
                         .WithMany("Followers")
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PersonId");
 
                     b.Navigation("Page");
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("SocialNetwork.Domain.Entities.Page", b =>
+                {
+                    b.HasOne("SocialNetwork.Domain.Entities.Person", "Person")
+                        .WithMany("Pages")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Person");
                 });
@@ -188,15 +206,11 @@ namespace SocialNetwork.Persistence.Migrations
                 {
                     b.HasOne("SocialNetwork.Domain.Entities.Page", "Page")
                         .WithMany("Posts")
-                        .HasForeignKey("CreatedByPage")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByPage");
 
                     b.HasOne("SocialNetwork.Domain.Entities.Person", "Person")
                         .WithMany("Posts")
-                        .HasForeignKey("CreatedByPerson")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreatedByPerson");
 
                     b.Navigation("Page");
 
@@ -213,6 +227,8 @@ namespace SocialNetwork.Persistence.Migrations
             modelBuilder.Entity("SocialNetwork.Domain.Entities.Person", b =>
                 {
                     b.Navigation("Followers");
+
+                    b.Navigation("Pages");
 
                     b.Navigation("Posts");
                 });

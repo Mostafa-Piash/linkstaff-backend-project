@@ -2,7 +2,7 @@
 
 namespace SocialNetwork.Interfaces.Repositories
 {
-    public interface IPageRepository:IRepository
+    public interface IPageRepository:IRepository<Page>
     {
         Task<Page> GetPageAsync(long pageId, long userId);
     }

@@ -5,7 +5,7 @@ using SocialNetwork.Persistence.Context;
 
 namespace SocialNetwork.Persistence.Repositories
 {
-    public class PageRepository : Repository, IPageRepository
+    public class PageRepository : Repository<Page>, IPageRepository
     {
         public PageRepository(SocialNetworkDbContext context) : base(context)
         {

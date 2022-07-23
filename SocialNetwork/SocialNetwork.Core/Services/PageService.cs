@@ -10,8 +10,8 @@ namespace SocialNetwork.Core.Services
     public class PageService : IPageService
     {
         private readonly IPageRepository _pageRepository;
-        private readonly IRepository _repository;
-        public PageService(IPageRepository pageRepository, IRepository repository)
+        private readonly IRepository<Post> _repository;
+        public PageService(IPageRepository pageRepository, IRepository<Post> repository)
         {
             _pageRepository = pageRepository;
             _repository = repository;

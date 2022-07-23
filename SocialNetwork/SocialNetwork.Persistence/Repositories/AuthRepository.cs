@@ -2,15 +2,10 @@
 using SocialNetwork.Domain.Entities;
 using SocialNetwork.Interfaces.Repositories;
 using SocialNetwork.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialNetwork.Persistence.Repositories
 {
-    public class AuthRepository : Repository, IAuthRepository
+    public class AuthRepository : Repository<Person>, IAuthRepository
     {
         public AuthRepository(SocialNetworkDbContext context) : base(context)
         {

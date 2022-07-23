@@ -6,6 +6,7 @@ using SocialNetwork.Domain.Entities;
 using SocialNetwork.Interfaces.Repositories;
 using SocialNetwork.Interfaces.Services;
 using SocialNetwork.Domain.Model.Person;
+using SocialNetwork.Core.Constants;
 
 namespace SocialNetwork.Core.Services
 {
@@ -27,7 +28,7 @@ namespace SocialNetwork.Core.Services
                 return new Response<RegistrationResponseModel>
                 {
                     Success = false,
-                    Message = "Email already exist",
+                    Message = ReposneMessageConstant.EMAIL_EXIST,
                     Result = null
                 };
 
@@ -43,7 +44,7 @@ namespace SocialNetwork.Core.Services
             return new Response<RegistrationResponseModel>
             {
                 Success = true,
-                Message = "registraion successful",
+                Message = ReposneMessageConstant.REGISTRAION_SUCCESSFUL,
                 Result = new RegistrationResponseModel
                 {
                     FirstName = registration.FirstName,
@@ -61,7 +62,7 @@ namespace SocialNetwork.Core.Services
             if (person == null || !AuthHelper.HashPassword(loginRequest.Password).Equals(person.Password))
             {
                 response.Success = false;
-                response.Message = "Invalid email or password";
+                response.Message = ReposneMessageConstant.INVALID_CREDENTIALS;
                 return response;
             }
             string token = _jwtConfigurationOptions.GenerateJwtAsync(person.Email, person.Id);
@@ -76,7 +77,7 @@ namespace SocialNetwork.Core.Services
                 }
             };
             response.Success = true;
-            response.Message = "Login successful";
+            response.Message = ReposneMessageConstant.LOGIN_SUCCESSFUL;
             return response;
         }
 

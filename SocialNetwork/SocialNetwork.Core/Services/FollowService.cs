@@ -1,4 +1,5 @@
-﻿using SocialNetwork.Domain.Common;
+﻿using SocialNetwork.Core.Constants;
+using SocialNetwork.Domain.Common;
 using SocialNetwork.Domain.Entities;
 using SocialNetwork.Interfaces.Repositories;
 using SocialNetwork.Interfaces.Services;
@@ -27,14 +28,14 @@ namespace SocialNetwork.Core.Services
                 return new Response<long>
                 {
                     Success = true,
-                    Message = "Success",
+                    Message = ReposneMessageConstant.SUCCESS,
                     Result = follower.Id
                 };
 
             return new Response<long>
             {
                 Success = false,
-                Message = "Failed to follow",
+                Message = ReposneMessageConstant.FAILED_TO_FOLLOW,
                 Result = follower.Id
             };
         }
@@ -52,14 +53,14 @@ namespace SocialNetwork.Core.Services
                 return new Response<long>
                 {
                     Success = true,
-                    Message = "Success",
+                    Message = ReposneMessageConstant.SUCCESS,
                     Result = follower.Id
                 };
 
             return new Response<long>
             {
                 Success = false,
-                Message = "Failed to follow",
+                Message = ReposneMessageConstant.FAILED_TO_FOLLOW,
                 Result = follower.Id
             };
         }

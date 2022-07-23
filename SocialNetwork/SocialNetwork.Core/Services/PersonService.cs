@@ -1,4 +1,5 @@
-﻿using SocialNetwork.Domain.Common;
+﻿using SocialNetwork.Core.Constants;
+using SocialNetwork.Domain.Common;
 using SocialNetwork.Domain.DTOs;
 using SocialNetwork.Domain.Entities;
 using SocialNetwork.Domain.Model.Post;
@@ -25,7 +26,7 @@ namespace SocialNetwork.Core.Services
                 return new Response<long>
                 {
                     Success = false,
-                    Message = "User not found",
+                    Message = ReposneMessageConstant.User_NOT_FOUND,
                     Result = 0
                 };
             Post post = new()
@@ -39,14 +40,14 @@ namespace SocialNetwork.Core.Services
                 return new Response<long>
                 {
                     Success = true,
-                    Message = "Post created",
+                    Message = ReposneMessageConstant.POST_CREATED,
                     Result = post.Id
                 };
 
             return new Response<long>
             {
                 Success = false,
-                Message = "Failed to create post",
+                Message = ReposneMessageConstant.POST_CREATE_FAILED,
                 Result = 0
             };
 
@@ -59,7 +60,7 @@ namespace SocialNetwork.Core.Services
                 return new Response<IEnumerable<PostResponseModel>>
                 {
                     Success = false,
-                    Message = "User not found",
+                    Message = ReposneMessageConstant.User_NOT_FOUND,
                     Result = null
                 };
             IEnumerable<PostDto> posts = await _postRepository.GetFeedPostsAsync(userId);
@@ -67,7 +68,7 @@ namespace SocialNetwork.Core.Services
             return new Response<IEnumerable<PostResponseModel>>
             {
                 Success = true,
-                Message = "Suceess",
+                Message = ReposneMessageConstant.SUCCESS,
                 Result = posts.Select(s => new PostResponseModel
                 {
                     Post = s.Status,

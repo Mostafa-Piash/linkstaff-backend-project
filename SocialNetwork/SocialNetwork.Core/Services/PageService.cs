@@ -1,4 +1,5 @@
-﻿using SocialNetwork.Domain.Common;
+﻿using SocialNetwork.Core.Constants;
+using SocialNetwork.Domain.Common;
 using SocialNetwork.Domain.Entities;
 using SocialNetwork.Domain.Model.Page;
 using SocialNetwork.Domain.Model.Post;
@@ -28,14 +29,14 @@ namespace SocialNetwork.Core.Services
                 return new Response<string>
                 {
                     Success = true,
-                    Message = "Page created",
+                    Message = ReposneMessageConstant.PAGE_CREATED,
                     Result = pageRequest.Name
                 };
 
             return new Response<string>
             {
                 Success = false,
-                Message = "Failed to create page",
+                Message = ReposneMessageConstant.PAGE_CREATE_FAILED,
                 Result = null
             };
 
@@ -48,7 +49,7 @@ namespace SocialNetwork.Core.Services
                 return new Response<long>
                 {
                     Success = false,
-                    Message = "Page not found",
+                    Message = ReposneMessageConstant.PAGE_NOT_FOUND,
                     Result = 0
                 };
             Post post = new()
@@ -62,14 +63,14 @@ namespace SocialNetwork.Core.Services
                 return new Response<long>
                 {
                     Success = true,
-                    Message = "Post created",
+                    Message = ReposneMessageConstant.POST_CREATED,
                     Result = post.Id
                 };
 
             return new Response<long>
             {
                 Success = false,
-                Message = "Failed to create post",
+                Message = ReposneMessageConstant.POST_CREATE_FAILED,
                 Result = 0
             };
 

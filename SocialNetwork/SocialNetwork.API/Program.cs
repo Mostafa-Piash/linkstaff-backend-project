@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using SocialNetwork.Domain.Common;
 using SocialNetwork.API.Extensions;
 using Microsoft.OpenApi.Models;
+using SocialNetwork.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
@@ -42,15 +43,11 @@ var app = builder.Build();
 await using var scope = app.Services.CreateAsyncScope();
 using var db = scope.ServiceProvider.GetService<SocialNetworkDbContext>();
 await db.Database.MigrateAsync();
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    
-}
+
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

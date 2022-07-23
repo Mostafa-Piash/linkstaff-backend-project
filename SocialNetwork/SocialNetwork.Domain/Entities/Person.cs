@@ -2,13 +2,13 @@
 
 namespace SocialNetwork.Domain.Entities
 {
-    public class Person: Base<long>
+    public class Person : Base<long>
     {
         public Person()
         {
             Posts = new HashSet<Post>();
             Followers = new HashSet<Follower>();
-            Pages= new HashSet<Page>();
+            Pages = new HashSet<Page>();
         }
         [Required]
         public string FirstName { get; set; }

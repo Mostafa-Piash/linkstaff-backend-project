@@ -1,11 +1,11 @@
-using SocialNetwork.Persistence;
-using SocialNetwork.Core;
-using SocialNetwork.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
-using SocialNetwork.Domain.Common;
-using SocialNetwork.API.Extensions;
 using Microsoft.OpenApi.Models;
+using SocialNetwork.API.Extensions;
 using SocialNetwork.API.Middlewares;
+using SocialNetwork.Core;
+using SocialNetwork.Domain.Common;
+using SocialNetwork.Persistence;
+using SocialNetwork.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
@@ -20,7 +20,7 @@ builder.Services.Configure<JwtConfiguration>(configuration.GetSection(nameof(Jwt
 builder.Services.AddJwtAuthentication(configuration);
 builder.Services.AddSwaggerGen(c =>
 {
-    
+
     var securitySchema = new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme. Example: {token}",

@@ -23,14 +23,14 @@ namespace SocialNetwork.API.Controllers
         public async Task<IActionResult> CreatePageAsync([FromBody] PageRequestModel request)
         {
             long userId = await HttpContext.GetUserIdFromTokenAsync();
-            var response = await _pageService.CreatePageAsync(request,userId);
+            var response = await _pageService.CreatePageAsync(request, userId);
             if (response.Success)
                 return Ok(response);
             return StatusCode(StatusCodes.Status400BadRequest, response);
         }
 
         [HttpPost("{pageId}/attach-post")]
-        public async Task<IActionResult> PostPageStatusAsync(long pageId,[FromBody] PostRequestModel request)
+        public async Task<IActionResult> PostPageStatusAsync(long pageId, [FromBody] PostRequestModel request)
         {
             long userId = await HttpContext.GetUserIdFromTokenAsync();
             var response = await _pageService.PostPageStatusAsync(pageId, userId, request);

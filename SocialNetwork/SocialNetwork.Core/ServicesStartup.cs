@@ -10,7 +10,7 @@ namespace SocialNetwork.Core
         {
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IPageService, PageService>();
-            services.AddScoped<IFollowService,FollowService>();
+            services.AddScoped<IFollowService, FollowService>();
             services.AddScoped<IPersonService, PersonService>();
         }
 

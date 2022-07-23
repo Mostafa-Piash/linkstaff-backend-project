@@ -17,7 +17,7 @@ namespace SocialNetwork.Core.Helper
             return Convert.ToBase64String(hash);
         }
 
-        public static string GenerateJwtAsync(this JwtConfiguration jwtConfigurationOptions, string email,long id)
+        public static string GenerateJwtAsync(this JwtConfiguration jwtConfigurationOptions, string email, long id)
         {
             var mySecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtConfigurationOptions.SecurityKey));
             List<Claim> claims = new();
@@ -35,7 +35,7 @@ namespace SocialNetwork.Core.Helper
                 SigningCredentials = new SigningCredentials(mySecurityKey, SecurityAlgorithms.HmacSha256)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            
+
             return tokenHandler.WriteToken(token);
         }
 

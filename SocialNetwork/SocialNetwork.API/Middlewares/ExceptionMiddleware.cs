@@ -1,14 +1,6 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json;
 using SocialNetwork.Domain.Common;
+using System.Net;
 
 namespace SocialNetwork.API.Middlewares
 {
@@ -17,7 +9,7 @@ namespace SocialNetwork.API.Middlewares
 
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
-       
+
         public ExceptionMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
             _next = next;

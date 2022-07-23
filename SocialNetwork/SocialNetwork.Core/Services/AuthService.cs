@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Options;
+using SocialNetwork.Core.Constants;
 using SocialNetwork.Core.Helper;
 using SocialNetwork.Domain.Common;
-using SocialNetwork.Domain.Model.Auth;
 using SocialNetwork.Domain.Entities;
+using SocialNetwork.Domain.Model.Auth;
+using SocialNetwork.Domain.Model.Person;
 using SocialNetwork.Interfaces.Repositories;
 using SocialNetwork.Interfaces.Services;
-using SocialNetwork.Domain.Model.Person;
-using SocialNetwork.Core.Constants;
 
 namespace SocialNetwork.Core.Services
 {
@@ -23,7 +23,7 @@ namespace SocialNetwork.Core.Services
 
         public async Task<Response<RegistrationResponseModel>> RegisterAsync(RegistrationRequestModel registration)
         {
-            var person =await _authRepository.GetPersonByEmailAsync(registration.Email);
+            var person = await _authRepository.GetPersonByEmailAsync(registration.Email);
             if (person != null)
                 return new Response<RegistrationResponseModel>
                 {

@@ -1,6 +1,6 @@
 ﻿namespace SocialNetwork.Interfaces.Repositories
 {
-    public interface IRepository <T> where T : class
+    public interface IRepository<T> where T : class
     {
         /// <summary>
         /// get all data

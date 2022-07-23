@@ -31,7 +31,7 @@ namespace SocialNetwork.Core.Services
             Post post = new()
             {
                 Status = postRequest.Post,
-                CreatedByPage = userId
+                CreatedByPerson = userId
             };
             await _postRepository.CreateAsync(post);
             int rows = await _postRepository.SaveChangesAsync();
@@ -71,10 +71,20 @@ namespace SocialNetwork.Core.Services
                 Result = posts.Select(s => new PostResponseModel
                 {
                     Post = s.Status,
-                    Author = s.CreatedBy,
+                    Author = GetAuthorName(s.CreatedByPerson, s.CreatedByPage),
                     PublishDate = s.CreatedDate
                 })
             };
+
+        }
+
+        private string GetAuthorName(string createdByPerson, string createdByPage)
+        {
+            if (!string.IsNullOrWhiteSpace(createdByPage))
+                return createdByPage;
+            else if (!string.IsNullOrWhiteSpace(createdByPerson))
+                return createdByPerson;
+            return string.Empty;
 
         }
     }

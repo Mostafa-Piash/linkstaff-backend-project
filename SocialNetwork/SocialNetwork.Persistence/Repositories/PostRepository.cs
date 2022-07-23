@@ -17,17 +17,20 @@ namespace SocialNetwork.Persistence.Repositories
            var query = from posts in _context.Posts
                        from followers in _context.Followers
                        from people in _context.People 
-                       where (posts.CreatedByPerson == followers.PersonId || posts.CreatedByPage == followers.PageId)
-                       && (posts.CreatedByPerson == people.Id || posts.CreatedByPage == people.Id)
+                       from pages in _context.Pages
+                       where (posts.CreatedByPerson == followers.PersonId || posts.CreatedByPerson==userId || posts.CreatedByPage == followers.PageId)
+                      // && (posts.CreatedByPerson == people.Id || posts.CreatedByPage == pages.Id)
                        && followers.FollowerId == userId && posts.IsActive &&  !posts.IsDeleted
-                       select new PostDto
+                       select  new PostDto
                        {
+                           PostId = posts.Id,
                            Status = posts.Status,
                            CreatedDate = posts.CreatedDate,
-                           CreatedBy =string.Format("{0} {1}", people.FirstName, people.LastName)
+                           CreatedByPerson = posts.CreatedByPerson!=null? string.Format("{0} {1}", people.FirstName, people.LastName): string.Empty,
+                           CreatedByPage = posts.CreatedByPage != null ? string.Format("{0}", pages.Name) : string.Empty
                        };
 
-            return await query.ToListAsync();
+            return await query.GroupBy(x=>x.PostId).Select(s=>s.FirstOrDefault()).ToListAsync();
         }
     }
 }

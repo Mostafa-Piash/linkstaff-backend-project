@@ -30,11 +30,16 @@ namespace SocialNetwork.Persistence.Context
                         .WithOne(o => o.Person)
                         .HasForeignKey(x => x.PersonId);
 
+
             modelBuilder.Entity<Page>()
                         .HasMany(m => m.Followers)
                         .WithOne(o => o.Page)
                         .HasForeignKey(x => x.PageId);
 
+            modelBuilder.Entity<Page>()
+                    .HasOne(m => m.Person)
+                    .WithMany(o => o.Pages)
+                    .HasForeignKey(x => x.CreatorId);
         }
     }
 }
